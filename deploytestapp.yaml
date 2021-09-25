@@ -1,0 +1,14 @@
+
+- hosts: ubuntu2
+  user: root
+  gather_facts: False
+
+  tasks:
+    - name: deploy test app
+      docker_container:
+        name: mytestapp
+        image: pendragon1902/testapp
+        ports:
+          - "2100:80"
+        volumes:
+          - data:/var/www/html

@@ -1,0 +1,11 @@
+[ubuntu1]
+192.168.75.130
+
+[ubuntu2]
+192.168.75.131
+
+[ubuntu:children]
+ubuntu1
+ubuntu2
+[ubuntu:vars]
+ansible_python_interpreter=/usr/bin/python3

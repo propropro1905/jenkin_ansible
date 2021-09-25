@@ -1,0 +1,28 @@
+- hosts: ubuntu1
+  user: root
+  gather_facts: False
+
+  tasks:
+    - name: install docker and depedencies
+      apt:
+        name: python3-pip, docker.io
+        state: present
+    - name: start docker service
+      service:
+        name: docker
+        state: started
+    - name: install docker python modules
+      pip:
+        name: docker
+    - name: remove container (if exist)
+      docker_container:
+        name: testapp
+        state: absent
+    - name: run container
+      docker_container:
+        name: testapp
+        image: pendragon1902/testapp:latest
+        state: started
+        ports:
+          - "1200:80"
+         
